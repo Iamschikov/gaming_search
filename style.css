@@ -1,0 +1,138 @@
+/* Сброс отступов и учёт рамок в ширину элементов */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Цветовая тема «Пиксельный штаб» через переменные */
+:root {
+  --bg: #1a1a2e;       /* Тёмно-синий фон страницы */
+  --surface: #16213e;  /* Чуть светлее для карточек */
+  --ink: #eaeaea;      /* Светлый текст для контраста */
+  --muted: #a0a0b0;    /* Серый текст для подписей */
+  --accent: #e94560;   /* Яркий акцент (красно-розовый) */
+  --border: #0f3460;   /* Цвет границ */
+  --radius: 8px;       /* Скругление углов */
+  --gap: 16px;         /* Отступы между элементами */
+}
+
+/* Базовые настройки тела страницы */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+  padding: var(--gap);
+}
+
+/* Настройки ссылок и заголовков */
+h1, h2 { margin: 0 0 var(--gap) 0; color: var(--ink); }
+p { margin: 0 0 var(--gap) 0; color: var(--muted); }
+
+/* Шапка сайта: флекс с переносом */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  align-items: baseline;
+  margin-bottom: calc(var(--gap) * 2);
+  border-bottom: 2px solid var(--border);
+  padding-bottom: var(--gap);
+}
+
+/* Основные секции с отступами друг от друга */
+section { margin-bottom: calc(var(--gap) * 2); }
+
+/* Сетка для карточек статистики (всегда в ряд, если влезает) */
+.grid-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+}
+
+/* Карточка статистики: занимает всё доступное место */
+.card-stat {
+  flex: 1 1 100px;
+  background-color: var(--surface);
+  padding: var(--gap);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Форма: элементы идут друг под другом */
+.game-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  background-color: var(--surface);
+  padding: var(--gap);
+  border-radius: var(--radius);
+}
+
+/* Подписи к полям ввода */
+label {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: -8px; /* Чуть ближе к полю */
+}
+
+/* Поля ввода и кнопки: минимальная высота 44px */
+input, button {
+  height: 44px;
+  padding: 0 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  width: 100%;
+}
+
+/* Кнопка добавления: акцентный цвет */
+.btn-add {
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: var(--gap);
+}
+
+/* Видимый фокус для доступности */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Пустой список (убираем точки, если они есть по умолчанию) */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--gap);
+}
+
+/* Подвал */
+.site-footer {
+  margin-top: calc(var(--gap) * 2);
+  padding-top: var(--gap);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Адаптив для планшетов: 2 колонки */
+@media (min-width: 640px) {
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Адаптив для десктопов: 3 колонки */
+@media (min-width: 1024px) {
+  .list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
