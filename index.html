@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Пиксельный штаб</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Шапка сайта с названием -->
+<header class="site-header">
+  <h1>Пиксельный штаб</h1>
+  <p>Учебная панель управления школьным киберклубом</p>
+</header>
+
+<main>
+  <!-- Секция со статистикой клуба -->
+  <section class="summary" aria-labelledby="heading-summary">
+    <h2 id="heading-summary">Сводка</h2>
+    <div class="grid-cards">
+      <div class="card-stat">Игр: 0</div>
+      <div class="card-stat">Часов: 0</div>
+      <div class="card-stat">Рейтинг: 0</div>
+    </div>
+  </section>
+
+  <!-- Форма для добавления новой игры -->
+  <section class="add-game" aria-labelledby="heading-add">
+    <h2 id="heading-add">Новая игра</h2>
+    <form class="game-form">
+      <label for="input-name">Название игры</label>
+      <input type="text" id="input-name" required>
+
+      <label for="input-hours">Часы</label>
+      <input type="number" id="input-hours" min="0" required>
+
+      <label for="input-score">Оценка</label>
+      <input type="number" id="input-score" min="1" max="10" required>
+
+      <button type="button" class="btn-add">Добавить</button>
+    </form>
+  </section>
+
+  <!-- Список всех игр (заполняется скриптом) -->
+  <section class="library" aria-labelledby="heading-lib">
+    <h2 id="heading-lib">Библиотека</h2>
+    <ul class="list" id="list"></ul> <!-- Сюда script.js вставит карточки игр -->
+  </section>
+
+  <!-- Список актуальных скидок (заполняется скриптом) -->
+  <section class="discounts" aria-labelledby="heading-disc">
+    <h2 id="heading-disc">Скидки</h2>
+    <ul class="list" id="list2"></ul> <!-- Сюда script.js вставит карточки скидок -->
+  </section>
+</main>
+
+<!-- Подвал с информацией об авторе -->
+<footer class="site-footer">
+  <p>Проект ученика 10–11 класса. Только HTML, CSS и JS.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
