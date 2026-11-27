@@ -32,3 +32,33 @@ function renderItems(items) {
 
 // Запускаем отрисовку с нашими данными
 renderItems(ITEMS);
+// Функция отрисовки библиотеки игр из массива games
+function renderLibrary() {
+  // Находим контейнер списка в HTML
+  const list = document.querySelector("#list");
+
+  // Если массив пустой, показываем сообщение и выходим
+  if (games.length === 0) {
+    list.innerHTML = '<li class="empty">Библиотека пуста. Добавь первую игру.</li>';
+    return;
+  }
+
+  // Создаем HTML-строку из массива данных
+  const html = games.map(game => {
+    // Создаем временный элемент для безопасной вставки текста пользователя
+    const safeTitle = document.createElement("span");
+    safeTitle.textContent = game.title;
+
+    // Возвращаем шаблон карточки с безопасным заголовком
+    return `
+      <li class="card" data-id="${game.id}">
+        <h3>${safeTitle.innerHTML}</h3>
+        <p>Часы: ${game.hours}</p>
+        <p>Оценка: ${game.score} из 10</p>
+      </li>
+    `;
+  }).join(""); // Склеиваем все карточки в одну строку
+
+  // Вставляем готовую разметку на страницу одним действием
+  list.innerHTML = html;
+}
